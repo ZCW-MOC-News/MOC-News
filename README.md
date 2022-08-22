@@ -1,3 +1,5 @@
+# MOC News
+
 ### News Site (NPR/CNN/NYTimes clone)
 
 #### User Stories
@@ -9,3 +11,5 @@
   * add a like to a news story
   * create comments on news stories
    that other logged in users can see.
+
+Spring Boot, React and SQL
