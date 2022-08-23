@@ -1,5 +1,7 @@
 # MOC News
 
+**M**eilin (Linda) Li, **O**ctavia Gomes, and **C**hris Kent.
+
 ### News Site (NPR/CNN/NYTimes clone)
 
 #### User Stories
