@@ -33,13 +33,13 @@ public class AccountController {
         return accountRepository.findAll();
     }
 
-    @GetMapping(path="/findById/{id}")
-    public @ResponseBody Optional<Account> getAccount(@PathVariable Long id) {
+    @GetMapping(path="/find_id")
+    public @ResponseBody Optional<Account> getAccount(@RequestParam Long id) {
         return accountRepository.findById(id);
     }
 
-    @GetMapping(path="/find/{username}")
-    public @ResponseBody Optional<Account> getAccount(@PathVariable String username) {
+    @GetMapping(path="/find")
+    public @ResponseBody Optional<Account> getAccount(@RequestParam String username) {
         return accountRepository.findByUsername(username);
     }
 }
