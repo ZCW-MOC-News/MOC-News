@@ -1,4 +1,7 @@
 package com.zcwnewsapp.MOCNews.comments;
 
-public class CommentRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface CommentRepository extends CrudRepository<Comment, Long> {
+
 }
