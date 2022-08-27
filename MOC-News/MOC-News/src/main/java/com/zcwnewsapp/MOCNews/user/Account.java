@@ -17,6 +17,12 @@ public class Account {
     @NotNull
     private String password;
 
+//    @OneToMany (
+//        mappedBy= "likes",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true
+//    )
+
     public Account() {}
 
     public Account(String username, String password) {
