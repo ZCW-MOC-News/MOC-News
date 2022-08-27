@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/articles")
@@ -41,6 +42,21 @@ public class ArticleController {
     public @ResponseBody Iterable<Article> getAllArticles() {
         //     This returns a JSON or XML with the users
         return articleRepository.findAll();
+    }
+
+    @GetMapping(path="/find_id")
+    public @ResponseBody Optional<Article> getArticle(@RequestParam Long id) {
+        return articleRepository.findById(id);
+    }
+
+    @GetMapping(path="/find_author")
+    public @ResponseBody Iterable<Article> getAuthor(@RequestParam String author) {
+        return articleRepository.findByAuthorIgnoreCaseContaining(author);
+    }
+
+    @GetMapping(path="/find_title")
+    public @ResponseBody Iterable<Article> getTitle(@RequestParam String title) {
+        return articleRepository.findByTitleIgnoreCaseContaining(title);
     }
 
 
