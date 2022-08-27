@@ -1,5 +1,6 @@
 package com.zcwnewsapp.MOCNews.likes;
 
-public class LikesRepository {
+import org.springframework.data.repository.CrudRepository;
 
+public interface LikesRepository extends CrudRepository<Likes, Long> {
 }
