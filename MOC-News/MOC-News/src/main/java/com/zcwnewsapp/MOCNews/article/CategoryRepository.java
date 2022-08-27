@@ -1,4 +1,7 @@
 package com.zcwnewsapp.MOCNews.article;
 
-public class CategoryRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface CategoryRepository  extends CrudRepository<Category, Long> {
+
 }
