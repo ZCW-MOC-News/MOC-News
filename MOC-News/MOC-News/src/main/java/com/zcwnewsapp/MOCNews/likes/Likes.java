@@ -15,11 +15,12 @@ public class Likes {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "likes_id")
     private Long id;
-    @OneToMany(
-            mappedBy = "likes",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+
+//    @ManyToOne(
+//            mappedBy = "account",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
 
     public List<Article> articles = new ArrayList<>();
 
