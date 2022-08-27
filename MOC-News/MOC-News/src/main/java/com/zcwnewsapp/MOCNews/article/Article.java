@@ -1,8 +1,13 @@
 package com.zcwnewsapp.MOCNews.article;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Getter @Setter
 @Entity
 public class Article {
 
@@ -17,73 +22,17 @@ public class Article {
     private String description;
     @Column(columnDefinition = "text")
     private String content;
-    private LocalDateTime date;
+    private LocalDate date;
 
     public Article () {
     }
 
-    public Article(Long id, String author, String title, String source, String description, String content, LocalDateTime date) {
+    public Article(Long id, String author, String title, String source, String description, String content, LocalDate date) {
         this.author = author;
         this.title = title;
         this.source = source;
         this.description = description;
         this.content = content;
-        this.date = date;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
