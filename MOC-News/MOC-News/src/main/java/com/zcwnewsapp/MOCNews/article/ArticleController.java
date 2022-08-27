@@ -5,8 +5,11 @@ import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,10 +21,17 @@ public class ArticleController {
 
     @Autowired
     private ArticleRepository articleRepository;
+    @PersistenceContext
+    EntityManager entityManager;
 
+    @Transactional
     @PostMapping(path="/post")
     public @ResponseBody String postArticle (@RequestParam String author
-            , @RequestParam String title, @RequestParam String source, @RequestParam String description, @RequestParam String content, @RequestParam String date) {
+            , @RequestParam String title, @RequestParam String source,
+                                             @RequestParam String description,
+                                             @RequestParam String content,
+                                             @RequestParam String date,
+                                             @RequestParam String category) {
 
         // Formats a String into a Java date object
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -33,7 +43,10 @@ public class ArticleController {
         a.setSource(source);
         a.setDescription(description);
         a.setContent(content);
+        Category c = entityManager.getReference(Category.class, Long.parseLong(category));
+        a.setCategory(c);
         articleRepository.save(a);
+        entityManager.persist(a);
 
         return "Saved";
     }

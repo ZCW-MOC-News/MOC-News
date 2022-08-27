@@ -1,5 +1,6 @@
 package com.zcwnewsapp.MOCNews.article;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,12 @@ public class Article {
     @Column(columnDefinition = "text")
     private String content;
     private LocalDate date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    @JsonIgnore
+    private Category category;
+
 
     public Article () {
     }
