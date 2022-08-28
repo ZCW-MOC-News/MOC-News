@@ -1,7 +1,6 @@
 package com.zcwnewsapp.MOCNews.article;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zcwnewsapp.MOCNews.likes.Likes;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,13 +28,6 @@ public class Article {
     @JoinColumn(name = "category_id")
     @JsonIgnore
     private Category category;
-
-    @OneToOne(orphanRemoval = true)
-    @JoinTable(name = "article_likes",
-            joinColumns = @JoinColumn(name = "article_article_id"),
-            inverseJoinColumns = @JoinColumn(name = "likes_likes_id"))
-    private Likes likes;
-
 
     public Article () {
     }
