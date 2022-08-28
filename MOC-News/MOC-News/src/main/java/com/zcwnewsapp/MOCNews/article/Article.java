@@ -16,6 +16,7 @@ public class Article {
     @Column(name="article_id")
     private Long id;
     private String author;
+    @Column(unique = true)
     private String title;
     private String source;
     @Column(length = 512)
