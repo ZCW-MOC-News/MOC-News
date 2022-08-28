@@ -10,16 +10,16 @@ import java.util.List;
 
 @Getter @Setter
 @Entity
-@Table(name = "Likes")
+@Table(name = "LIKES")
 public class Likes {
-    @Column
+    @Column(name = "ACCOUNTID")
     private Long accountId;
-    @Column
+    @Column(name = "ARTICLEID")
     private Long articleId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(name = "LIKESID")
     private Long likesId;
 
     @ManyToOne
@@ -31,6 +31,7 @@ public class Likes {
     private Article article;
 
     public List<Article> articles = new ArrayList<>();
+
    public Likes() {
 
    }

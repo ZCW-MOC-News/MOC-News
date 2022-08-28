@@ -8,20 +8,22 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Account")
+@Table(name = "ACCOUNT")
 public class Account {
 
     // Automatically generate user id, which will be unique for each user
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ACCOUNTID")
     private Long accountId;
-    @Column(unique=true)
+    @Column(name = "USERNAME", unique=true)
     private String username;
     @NotNull
+    @Column(name = "PASSWORD")
     private String password;
 
-    //Add annotation
-    public ArrayList<String> bookmarks;
+//    @OneToMany
+//    public ArrayList<String> bookmarks;
 
     @OneToMany (mappedBy = "account", cascade = CascadeType.ALL)
     public ArrayList<Likes> likes;
