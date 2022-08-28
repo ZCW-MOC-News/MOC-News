@@ -12,13 +12,15 @@ import java.util.List;
 @Entity
 @Table(name = "Likes")
 public class Likes {
+    @Column
+    private Long accountId;
+    @Column
+    private Long articleId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Long likesId;
-
-    private Long accountId;
-    private Long articleId;
 
     @ManyToOne
     @JoinColumn(name = "accountId", insertable = false, updatable = false, nullable = false)
@@ -29,8 +31,12 @@ public class Likes {
     private Article article;
 
     public List<Article> articles = new ArrayList<>();
+   public Likes() {
 
-    public Likes () {
+   }
+    public Likes (Long accountId, Long articleId) {
+        this.accountId = accountId;
+        this.articleId = articleId;
     }
 
 }

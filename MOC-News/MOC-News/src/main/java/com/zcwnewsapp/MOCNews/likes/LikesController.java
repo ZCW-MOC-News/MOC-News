@@ -21,12 +21,11 @@ public class LikesController {
 
     @Transactional
     @PostMapping(path="/add")
-    public @ResponseBody String addLikes(@RequestParam String likes) {
-        Likes like = new Likes();
-//        like.setLikes(likes);
+    public @ResponseBody Likes addLikes(@RequestParam Long accountId, Long articleId) {
+        Likes like = new Likes(accountId, articleId);
         entityManager.persist(like);
-        likesRepository.save(like);
-        return "Saved";
+      return likesRepository.save(like);
+      // On front-end, set to not null
     }
 
 //    @GetMapping(path="/retrieve_account")
