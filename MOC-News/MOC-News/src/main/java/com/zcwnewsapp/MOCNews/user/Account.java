@@ -3,25 +3,26 @@ package com.zcwnewsapp.MOCNews.user;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Objects;
 
 @Entity
+@Table(name = "Account")
 public class Account {
 
     // Automatically generate user id, which will be unique for each user
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long accountId;
     @Column(unique=true)
     private String username;
     @NotNull
     private String password;
+    //Add annotation
+    public ArrayList<String> bookmarks;
 
-//    @OneToMany (
-//        mappedBy= "likes",
-//        cascade = CascadeType.ALL,
-//        orphanRemoval = true
-//    )
+    @OneToMany (mappedBy = "Likes")
+    public ArrayList<String> likes;
 
     public Account() {}
 
