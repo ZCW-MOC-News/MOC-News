@@ -1,6 +1,7 @@
 package com.zcwnewsapp.MOCNews.user;
 
 import com.sun.istack.NotNull;
+import com.zcwnewsapp.MOCNews.likes.Likes;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,11 +19,12 @@ public class Account {
     private String username;
     @NotNull
     private String password;
+
     //Add annotation
     public ArrayList<String> bookmarks;
 
-    @OneToMany (mappedBy = "Likes")
-    public ArrayList<String> likes;
+    @OneToMany (mappedBy = "account", cascade = CascadeType.ALL)
+    public ArrayList<Likes> likes;
 
     public Account() {}
 
@@ -31,12 +33,12 @@ public class Account {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAccountId(Long id) {
+        this.accountId = accountId;
     }
 
     public String getUsername() {
@@ -64,17 +66,17 @@ public class Account {
             return false;
         Account account = (Account) o;
         return Objects.equals(this.username, account.username) && Objects.equals(this.password, account.password)
-                && Objects.equals(this.id, account.id);
+                && Objects.equals(this.accountId, account.accountId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.username);
+        return Objects.hash(this.accountId, this.username);
     }
 
     @Override
     public String toString() {
-        return "Account{" + "id=" + this.id + ", username='" + this.username +'}';
+        return "Account{" + "accountId=" + this.accountId + ", username='" + this.username +'}';
     }
 }
 
