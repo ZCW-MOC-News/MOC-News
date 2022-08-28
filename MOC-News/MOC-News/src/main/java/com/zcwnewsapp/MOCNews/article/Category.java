@@ -1,5 +1,6 @@
 package com.zcwnewsapp.MOCNews.article;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="category_id")
     private Long id;
+    @Column(unique=true)
     private String category;
     @OneToMany(
             mappedBy = "category",
