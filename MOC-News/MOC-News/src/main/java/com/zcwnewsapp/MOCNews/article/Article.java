@@ -1,13 +1,11 @@
 package com.zcwnewsapp.MOCNews.article;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zcwnewsapp.MOCNews.likes.Likes;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter @Setter
 @Entity
@@ -18,6 +16,7 @@ public class Article {
     @Column(name="article_id")
     private Long id;
     private String author;
+    @Column(unique = true)
     private String title;
     private String source;
     @Column(length = 512)
@@ -30,13 +29,6 @@ public class Article {
     @JoinColumn(name = "category_id")
     @JsonIgnore
     private Category category;
-
-    @OneToOne(orphanRemoval = true)
-    @JoinTable(name = "article_likes",
-            joinColumns = @JoinColumn(name = "article_article_id"),
-            inverseJoinColumns = @JoinColumn(name = "likes_likes_id"))
-    private Likes likes;
-
 
     public Article () {
     }
@@ -51,3 +43,5 @@ public class Article {
     }
 
 }
+
+

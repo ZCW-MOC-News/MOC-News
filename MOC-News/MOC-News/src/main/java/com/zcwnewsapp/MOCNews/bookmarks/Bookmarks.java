@@ -1,4 +1,4 @@
-package com.zcwnewsapp.MOCNews.bookmarks;
-
-public class Bookmarks {
-}
+//package com.zcwnewsapp.MOCNews.bookmarks;
+//
+//public class Bookmarks {
+//}
