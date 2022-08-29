@@ -17,7 +17,7 @@ public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "likes_id")
-    private Long likesId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")

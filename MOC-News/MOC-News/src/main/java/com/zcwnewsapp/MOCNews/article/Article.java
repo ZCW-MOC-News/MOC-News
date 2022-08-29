@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 @Entity
@@ -31,12 +33,8 @@ public class Article {
     @JsonIgnore
     private Category category;
 
-    @OneToOne(orphanRemoval = true)
-    @JoinTable(name = "article_likes",
-            joinColumns = @JoinColumn(name = "article_article_id"),
-            inverseJoinColumns = @JoinColumn(name = "likes_likes_id"))
-    private Likes likes;
-
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Likes> likes = new ArrayList<>();
 
     public Article () {
     }
