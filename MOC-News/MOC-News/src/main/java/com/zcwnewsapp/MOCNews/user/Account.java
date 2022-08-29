@@ -5,6 +5,7 @@ import com.zcwnewsapp.MOCNews.bookmarks.Bookmarks;
 import com.zcwnewsapp.MOCNews.likes.Likes;
 import lombok.Getter;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Account {
 
     @OneToMany (mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
 
-    public List<Likes> likes = new ArrayList<>();
+    private List<Likes> likes = new ArrayList<>();
 
     public Account() {}
     }
