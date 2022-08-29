@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 @Entity
@@ -29,6 +32,9 @@ public class Article {
     @JoinColumn(name = "category_id")
     @JsonIgnore
     private Category category;
+
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Likes> likes = new ArrayList<>();
 
     public Article () {
     }

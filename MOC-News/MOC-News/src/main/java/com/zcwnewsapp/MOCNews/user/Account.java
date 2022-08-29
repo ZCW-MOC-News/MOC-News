@@ -1,79 +1,40 @@
 package com.zcwnewsapp.MOCNews.user;
 
 import com.sun.istack.NotNull;
+import com.zcwnewsapp.MOCNews.bookmarks.Bookmarks;
+import com.zcwnewsapp.MOCNews.likes.Likes;
+import lombok.Getter;
+import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+@Getter @Setter
 @Entity
 public class Account {
 
     // Automatically generate user id, which will be unique for each user
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "account_id")
     private Long id;
-    @Column(unique=true)
+    @Column(unique = true)
     private String username;
     @NotNull
     private String password;
 
-//    @OneToMany (
-//        mappedBy= "likes",
-//        cascade = CascadeType.ALL,
-//        orphanRemoval = true
-//    )
+//    @OneToMany (mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+//
+//    public List<Bookmarks> bookmarks = new ArrayList<>();
+
+    @OneToMany (mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    private List<Likes> likes = new ArrayList<>();
 
     public Account() {}
-
-    public Account(String username, String password) {
-        this.username = username;
-        this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-
-        if (this == o)
-            return true;
-        if (!(o instanceof Account))
-            return false;
-        Account account = (Account) o;
-        return Objects.equals(this.username, account.username) && Objects.equals(this.password, account.password)
-                && Objects.equals(this.id, account.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.id, this.username);
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" + "id=" + this.id + ", username='" + this.username +'}';
-    }
-}
 

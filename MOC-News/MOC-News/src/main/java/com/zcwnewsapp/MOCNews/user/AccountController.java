@@ -5,14 +5,22 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/accounts") // This means URL's start with /accounts (after Application path)
+@RequestMapping(path="/accounts") // This means URLs start with /accounts (after Application path)
 public class AccountController {
     @Autowired
     private AccountRepository accountRepository;
 
+    @PersistenceContext
+    EntityManager entityManager;
+
+    @Transactional
     @PostMapping(path="/add") // Map ONLY POST Requests
     public @ResponseBody String addNewUser (@RequestParam String username
             , @RequestParam String password) {
@@ -23,6 +31,7 @@ public class AccountController {
         n.setUsername(username);
         String encrypted = BCrypt.hashpw(password, BCrypt.gensalt());
         n.setPassword(encrypted);
+        entityManager.persist(n);
         accountRepository.save(n);
         return "Saved";
     }
