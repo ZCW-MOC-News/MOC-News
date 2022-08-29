@@ -12,6 +12,7 @@ import java.util.List;
 
 @Getter @Setter
 @Entity
+@Table(uniqueConstraints= @UniqueConstraint(columnNames = {"article_id", "account_id"}) )
 public class Likes {
 
     @Id
