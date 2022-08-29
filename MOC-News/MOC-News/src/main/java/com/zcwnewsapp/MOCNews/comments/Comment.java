@@ -1,5 +1,8 @@
 package com.zcwnewsapp.MOCNews.comments;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zcwnewsapp.MOCNews.article.Article;
+import com.zcwnewsapp.MOCNews.user.Account;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +17,16 @@ public class Comment {
     @Column(name="comment_id")
     private Long id;
     private String comment;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    @JsonIgnore
+    private Account account;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "article_id")
+    @JsonIgnore
+    private Article article;
 
 
     public Comment() {

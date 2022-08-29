@@ -7,12 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Controller
 @RequestMapping(path="/comment")
 public class CommentController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     @PostMapping(path="/post")
     public @ResponseBody String addComment (@RequestParam String comment) {
