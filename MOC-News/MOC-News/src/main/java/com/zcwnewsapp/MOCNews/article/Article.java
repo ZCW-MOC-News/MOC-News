@@ -1,7 +1,6 @@
 package com.zcwnewsapp.MOCNews.article;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zcwnewsapp.MOCNews.likes.Likes;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +19,7 @@ public class Article {
     @Column(name="article_id")
     private Long id;
     private String author;
+    @Column(unique = true)
     private String title;
     private String source;
     @Column(length = 512)
@@ -49,3 +49,5 @@ public class Article {
     }
 
 }
+
+

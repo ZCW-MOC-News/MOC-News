@@ -1,12 +1,12 @@
 package com.zcwnewsapp.MOCNews.article;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Setter @Getter
 @Entity
@@ -16,6 +16,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="category_id")
     private Long id;
+    @Column(unique=true)
     private String category;
     @OneToMany(
             mappedBy = "category",
