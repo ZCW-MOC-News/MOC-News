@@ -1,7 +1,6 @@
 package com.zcwnewsapp.MOCNews.likes;
 
 import com.zcwnewsapp.MOCNews.article.Article;
-import com.zcwnewsapp.MOCNews.article.Category;
 import com.zcwnewsapp.MOCNews.user.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/likes")
