@@ -1,5 +1,7 @@
 package com.zcwnewsapp.MOCNews.likes;
 
+import com.zcwnewsapp.MOCNews.article.Article;
+import com.zcwnewsapp.MOCNews.user.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/likes")
-//@RequestMapping("/like")
 public class LikesController {
-
 
     @Autowired
     private LikesRepository likesRepository;
@@ -23,16 +23,20 @@ public class LikesController {
 
     @Transactional
     @PostMapping(path="/add")
-    public @ResponseBody Likes addLikes(@RequestParam Long accountId, @RequestParam Long articleId) {
-        Likes like = new Likes(accountId, articleId);
+    public @ResponseBody String addLikes(@RequestParam Long account_id, @RequestParam Long article_id) {
+        Likes like = new Likes();
+        Account acc = entityManager.getReference(Account.class, account_id);
+        Article art = entityManager.getReference(Article.class, article_id);
+        like.setAccount(acc);
+        like.setArticle(art);
         entityManager.persist(like);
-      return likesRepository.save(like);
-      // On front-end, set to not null
+        likesRepository.save(like);
+        return "Saved";
     }
 
-//    @GetMapping(path="/retrieve_account")
-//    public @ResponseBody Optional<Likes> retrieveAccount(@RequestParam Long id) {
-//        return likesRepository.retrieveAccount(id);
-//    }
+    @GetMapping(path="/all")
+    public @ResponseBody Iterable<Likes> getAllLikes() {
+        return likesRepository.findAll();
+    }
 
 }

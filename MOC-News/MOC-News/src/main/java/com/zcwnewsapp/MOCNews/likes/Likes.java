@@ -1,4 +1,5 @@
 package com.zcwnewsapp.MOCNews.likes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zcwnewsapp.MOCNews.article.Article;
 import com.zcwnewsapp.MOCNews.user.Account;
 import lombok.Getter;
@@ -10,34 +11,25 @@ import java.util.List;
 
 @Getter @Setter
 @Entity
-@Table(name = "LIKES")
+@Table(uniqueConstraints= @UniqueConstraint(columnNames = {"article_id", "account_id"}))
 public class Likes {
- //   @Column(name = "ACCOUNTID")
-    private Long accountId;
- //   @Column(name = "ARTICLEID")
-    private Long articleId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "LIKESID")
+    @Column(name = "likes_id")
     private Long likesId;
 
-    @ManyToOne
-    @JoinColumn(name = "accountId", insertable = false, updatable = false, nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    @JsonIgnore
     private Account account;
 
-    @ManyToOne
-    @JoinColumn(name = "articleId", insertable = false, updatable = false, nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "article_d")
     private Article article;
-
- //   public List<Article> articles = new ArrayList<>();
 
    public Likes() {
 
    }
-    public Likes (Long accountId, Long articleId) {
-        this.accountId = accountId;
-        this.articleId = articleId;
-    }
 
 }
