@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Controller
@@ -19,6 +20,7 @@ public class AccountController {
     @PersistenceContext
     EntityManager entityManager;
 
+    @Transactional
     @PostMapping(path="/add") // Map ONLY POST Requests
     public @ResponseBody String addNewUser (@RequestParam String username
             , @RequestParam String password) {
