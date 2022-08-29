@@ -11,7 +11,7 @@ import java.util.List;
 
 @Getter @Setter
 @Entity
-@Table(uniqueConstraints= @UniqueConstraint(columnNames = {"article_id", "account_id"}))
+@Table(uniqueConstraints= @UniqueConstraint(columnNames = {"account_id", "article_id"}))
 public class Likes {
 
     @Id
@@ -25,7 +25,7 @@ public class Likes {
     private Account account;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article_d")
+    @JoinColumn(name = "article_id")
     private Article article;
 
    public Likes() {
