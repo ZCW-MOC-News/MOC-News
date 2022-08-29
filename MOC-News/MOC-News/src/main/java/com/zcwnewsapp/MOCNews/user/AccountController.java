@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/accounts") // This means URL's start with /accounts (after Application path)
+@RequestMapping(path="/accounts") // This means URLs start with /accounts (after Application path)
 public class AccountController {
     @Autowired
     private AccountRepository accountRepository;

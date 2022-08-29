@@ -11,7 +11,9 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/likes")
+//@RequestMapping("/like")
 public class LikesController {
+
 
     @Autowired
     private LikesRepository likesRepository;
@@ -21,7 +23,7 @@ public class LikesController {
 
     @Transactional
     @PostMapping(path="/add")
-    public @ResponseBody Likes addLikes(@RequestParam Long accountId, Long articleId) {
+    public @ResponseBody Likes addLikes(@RequestParam Long accountId, @RequestParam Long articleId) {
         Likes like = new Likes(accountId, articleId);
         entityManager.persist(like);
       return likesRepository.save(like);

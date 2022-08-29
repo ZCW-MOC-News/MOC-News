@@ -5,10 +5,11 @@ import com.zcwnewsapp.MOCNews.likes.Likes;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ACCOUNT")
+@Table(name = "ACCOUNT", indexes = @Index(columnList = "accountId"))
 public class Account {
 
     // Automatically generate user id, which will be unique for each user
@@ -26,7 +27,8 @@ public class Account {
 //    public ArrayList<String> bookmarks;
 
     @OneToMany (mappedBy = "account", cascade = CascadeType.ALL)
-    public ArrayList<Likes> likes;
+    public List<Likes> likes;
+
 
     public Account() {}
 
@@ -67,8 +69,8 @@ public class Account {
         if (!(o instanceof Account))
             return false;
         Account account = (Account) o;
-        return Objects.equals(this.username, account.username) && Objects.equals(this.password, account.password)
-                && Objects.equals(this.accountId, account.accountId);
+        return Objects.equals(this.accountId, account.accountId) && Objects.equals(this.username, account.username)
+                && Objects.equals(this.password, account.password);
     }
 
     @Override

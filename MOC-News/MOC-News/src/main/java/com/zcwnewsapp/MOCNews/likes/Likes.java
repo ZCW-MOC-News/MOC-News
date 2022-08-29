@@ -12,9 +12,9 @@ import java.util.List;
 @Entity
 @Table(name = "LIKES")
 public class Likes {
-    @Column(name = "ACCOUNTID")
+ //   @Column(name = "ACCOUNTID")
     private Long accountId;
-    @Column(name = "ARTICLEID")
+ //   @Column(name = "ARTICLEID")
     private Long articleId;
 
     @Id
@@ -30,7 +30,7 @@ public class Likes {
     @JoinColumn(name = "articleId", insertable = false, updatable = false, nullable = false)
     private Article article;
 
-    public List<Article> articles = new ArrayList<>();
+ //   public List<Article> articles = new ArrayList<>();
 
    public Likes() {
 
