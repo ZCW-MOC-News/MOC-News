@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Getter @Setter
 @Entity
-@Table(uniqueConstraints= @UniqueConstraint(columnNames = {"account_id", "article_id"}))
+@Table(uniqueConstraints= @UniqueConstraint(columnNames = {"article_id", "account_id"}) )
 public class Likes {
 
     @Id
@@ -18,17 +18,16 @@ public class Likes {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    @JsonIgnore
-    private Account account;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id")
     @JsonIgnore
     private Article article;
 
-   public Likes() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    @JsonIgnore
+    private Account account;
 
-   }
+    public Likes () {
+    }
 
 }
