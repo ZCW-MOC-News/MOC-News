@@ -1,4 +1,4 @@
-package com.zcwnewsapp.MOCNews.article;
+package com.zcwnewsapp.MOCNews.categories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
