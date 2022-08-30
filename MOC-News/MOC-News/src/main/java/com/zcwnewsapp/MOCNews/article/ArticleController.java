@@ -1,5 +1,6 @@
 package com.zcwnewsapp.MOCNews.article;
 
+import com.zcwnewsapp.MOCNews.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;

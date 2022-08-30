@@ -16,6 +16,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="comment_id")
     private Long id;
+
+    @Column(columnDefinition = "text")
     private String comment;
 
     @ManyToOne(fetch = FetchType.LAZY)
