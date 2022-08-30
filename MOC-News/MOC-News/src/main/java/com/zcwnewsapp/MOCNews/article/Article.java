@@ -1,6 +1,7 @@
 package com.zcwnewsapp.MOCNews.article;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zcwnewsapp.MOCNews.categories.Category;
 import com.zcwnewsapp.MOCNews.likes.Likes;
 import lombok.Getter;
 import lombok.Setter;
