@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/likes")

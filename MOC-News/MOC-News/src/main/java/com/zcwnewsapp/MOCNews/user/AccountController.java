@@ -3,20 +3,18 @@ package com.zcwnewsapp.MOCNews.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/accounts") // This means URLs start with /accounts (after Application path)
+@RequestMapping(path="/accounts") // This means URL's start with /accounts (after Application path)
 public class AccountController {
     @Autowired
     private AccountRepository accountRepository;
-
     @PersistenceContext
     EntityManager entityManager;
 
