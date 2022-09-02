@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 @Controller
-@RequestMapping(path="/likes")
+@RequestMapping(path="/comments")
 public class CommentController {
 
     @Autowired
