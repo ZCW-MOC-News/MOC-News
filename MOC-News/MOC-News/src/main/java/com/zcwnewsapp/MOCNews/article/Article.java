@@ -1,7 +1,8 @@
 package com.zcwnewsapp.MOCNews.article;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zcwnewsapp.MOCNews.likes.Like;
+import com.zcwnewsapp.MOCNews.categories.Category;
+import com.zcwnewsapp.MOCNews.likes.Likes;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,7 +39,7 @@ public class Article {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Like> likes = new ArrayList<>();
+    private List<Likes> likes = new ArrayList<>();
 
     public Article () {
     }

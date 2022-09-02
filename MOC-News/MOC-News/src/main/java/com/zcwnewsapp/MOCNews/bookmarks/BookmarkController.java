@@ -1,4 +1,4 @@
-package com.zcwnewsapp.MOCNews.comments;
+package com.zcwnewsapp.MOCNews.bookmarks;
 
 import com.zcwnewsapp.MOCNews.article.Article;
 import com.zcwnewsapp.MOCNews.user.Account;
@@ -11,31 +11,31 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 @Controller
-@RequestMapping(path="/comments")
-public class CommentController {
+@RequestMapping(path="/bookmark")
+public class BookmarkController {
 
     @Autowired
-    private CommentRepository commentRepository;
+    private BookmarkRepository bookmarkRepository;
 
     @PersistenceContext
     EntityManager entityManager;
 
     @Transactional
     @PostMapping(path="/add")
-    public @ResponseBody String addComment(@RequestParam Long account_id, @RequestParam Long article_id) {
-        Comment comment = new Comment();
+    public @ResponseBody String addBookmark(@RequestParam Long account_id, @RequestParam Long article_id) {
+        Bookmark bookmark = new Bookmark();
         Account acc = entityManager.getReference(Account.class, account_id);
         Article art = entityManager.getReference(Article.class, article_id);
-        comment.setAccount(acc);
-        comment.setArticle(art);
-        entityManager.persist(comment);
-        commentRepository.save(comment);
+        bookmark.setAccount(acc);
+        bookmark.setArticle(art);
+        entityManager.persist(bookmark);
+        bookmarkRepository.save(bookmark);
         return "Saved";
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Comment> getAllComments() {
-        return commentRepository.findAll();
+    public @ResponseBody Iterable<Bookmark> getAllBookmarks() {
+        return bookmarkRepository.findAll();
     }
 
 }

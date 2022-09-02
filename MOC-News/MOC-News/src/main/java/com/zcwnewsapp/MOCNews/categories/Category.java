@@ -1,6 +1,7 @@
-package com.zcwnewsapp.MOCNews.article;
+package com.zcwnewsapp.MOCNews.categories;
 
 import com.sun.istack.NotNull;
+import com.zcwnewsapp.MOCNews.article.Article;
 import lombok.Getter;
 import lombok.Setter;
 
