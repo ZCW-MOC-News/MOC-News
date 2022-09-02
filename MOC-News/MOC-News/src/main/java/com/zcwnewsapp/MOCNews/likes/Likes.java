@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter @Setter
 @Entity
 @Table(uniqueConstraints= @UniqueConstraint(columnNames = {"article_id", "account_id"}) )
-public class Like {
+public class Likes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +27,7 @@ public class Like {
     @JsonIgnore
     private Account account;
 
-    public Like() {
+    public Likes() {
     }
 
 }
