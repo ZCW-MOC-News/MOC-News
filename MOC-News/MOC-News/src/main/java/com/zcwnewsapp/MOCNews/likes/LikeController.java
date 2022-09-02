@@ -12,10 +12,10 @@ import javax.transaction.Transactional;
 
 @Controller
 @RequestMapping(path="/likes")
-public class LikesController {
+public class LikeController {
 
     @Autowired
-    private LikesRepository likesRepository;
+    private LikeRepository likesRepository;
 
     @PersistenceContext
     EntityManager entityManager;
@@ -23,7 +23,7 @@ public class LikesController {
     @Transactional
     @PostMapping(path="/add")
     public @ResponseBody String addLikes(@RequestParam Long account_id, @RequestParam Long article_id) {
-        Likes like = new Likes();
+        Like like = new Like();
         Account acc = entityManager.getReference(Account.class, account_id);
         Article art = entityManager.getReference(Article.class, article_id);
         like.setAccount(acc);
@@ -34,7 +34,7 @@ public class LikesController {
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Likes> getAllLikes() {
+    public @ResponseBody Iterable<Like> getAllLikes() {
         return likesRepository.findAll();
     }
 
