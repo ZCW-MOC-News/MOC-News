@@ -56,6 +56,7 @@ public class ArticleController {
 
     @GetMapping(path="/find_id")
     public @ResponseBody Optional<Article> getArticle(@RequestParam Long id) {
+
         return articleRepository.findById(id);
     }
 

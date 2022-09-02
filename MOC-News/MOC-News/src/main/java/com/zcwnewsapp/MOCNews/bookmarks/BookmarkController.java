@@ -35,6 +35,7 @@ public class BookmarkController {
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Bookmark> getAllBookmarks() {
+
         return bookmarkRepository.findAll();
     }
 
