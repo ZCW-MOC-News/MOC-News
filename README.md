@@ -24,7 +24,6 @@
 - [**Java**](https://swr.vercel.app/) - Language
 - [**Spring Boot**](https://start.spring.io/) - Framework
 - [**MySQL**](https://www.mysql.com/) - Database
-- [**AWS RDS**](https://aws.amazon.com/rds/) - Host
 
 ## 🎨 Frontend Techstack
 
