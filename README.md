@@ -1,10 +1,11 @@
-# MOC News
+## 📰 MOC News (Backend)
+🔗 Frontend: https://github.com/ZCW-MOC-News/MOC-News-UI
 
-**M**eilin (Linda) Li, **O**ctavia Gomes, and **C**hris Kent.
+## :zap: About
+Designed by: **M**eilin (Linda) Li, **O**ctavia Gomes, and **C**hris Kent.
 
-### News Site (NPR/CNN/NYTimes clone)
+### 💡 News Site (NPR/CNN/NYTimes clone)
 
-#### User Stories
 * As a client (not logged in) I can see news headlines
  * and # of likes about news stories
 * As a user, (logged in) I
@@ -13,5 +14,16 @@
   * add a like to a news story
   * create comments on news stories
    that other logged in users can see.
+   
+## :sparkles: Backend Techstack
 
-Spring Boot, React and SQL
+- [**Java**](https://swr.vercel.app/) - Language
+- [**Spring Boot**](https://start.spring.io/) - Framework
+- [**MySQL**](https://www.mysql.com/) - Database
+- [**AWS RDS**](https://aws.amazon.com/rds/) - Host
+
+## 🎨 Frontend Techstack
+
+- [**JavaScript**](https://www.javascript.com/) - Language
+- [**Next.js**](https://nextjs.org/) - Framework
+- [**TailwindCSS**](https://tailwindcss.com/) - Styling
