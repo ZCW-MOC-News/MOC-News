@@ -20,7 +20,6 @@ Designed by: **M**eilin (Linda) Li, **O**ctavia Gomes, and **C**hris Kent.
 - [**Java**](https://swr.vercel.app/) - Language
 - [**Spring Boot**](https://start.spring.io/) - Framework
 - [**MySQL**](https://www.mysql.com/) - Database
-- [**AWS RDS**](https://aws.amazon.com/rds/) - Host
 
 ## 🎨 Frontend Techstack
 
