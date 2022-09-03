@@ -2,7 +2,6 @@
 🔗 Frontend: https://github.com/ZCW-MOC-News/MOC-News-UI
 
 ## :zap: About
-Designed by: **M**eilin (Linda) Li, **O**ctavia Gomes, and **C**hris Kent.
 
 ### 💡 News Site (NPR/CNN/NYTimes clone)
 
@@ -14,14 +13,19 @@ Designed by: **M**eilin (Linda) Li, **O**ctavia Gomes, and **C**hris Kent.
   * add a like to a news story
   * create comments on news stories
    that other logged in users can see.
+
+👤 Designed by: 
+- **M**eilin (Linda) Li
+- **O**ctavia Gomes
+- **C**hris Kent
    
-## :sparkles: Backend Techstack
+## :sparkles: Backend Tech Stack
 
 - [**Java**](https://swr.vercel.app/) - Language
 - [**Spring Boot**](https://start.spring.io/) - Framework
-- [**MySQL**](https://www.mysql.com/) - Database
+- [**MySQL**](https://www.mysql.com/) - Database hosted on AWS RDS
 
-## 🎨 Frontend Techstack
+## 🎨 Frontend Tech Stack
 
 - [**JavaScript**](https://www.javascript.com/) - Language
 - [**Next.js**](https://nextjs.org/) - Framework
