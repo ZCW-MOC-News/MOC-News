@@ -35,6 +35,7 @@ public class CommentController {
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Comment> getAllComments() {
+
         return commentRepository.findAll();
     }
 

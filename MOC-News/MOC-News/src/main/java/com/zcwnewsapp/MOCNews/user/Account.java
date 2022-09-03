@@ -1,13 +1,14 @@
 package com.zcwnewsapp.MOCNews.user;
 
 import com.sun.istack.NotNull;
-import com.zcwnewsapp.MOCNews.likes.Like;
+import com.zcwnewsapp.MOCNews.likes.Likes;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter @Setter
 @Entity
@@ -28,7 +29,7 @@ public class Account {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Like> likes = new ArrayList<>();
+    private List<Likes> likes = new ArrayList<>();
 
     public Account() {}
 }
