@@ -13,17 +13,30 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@org.hibernate.annotations.NamedNativeQuery(name = "Article.findAllArticles_Named",
-        query = "SELECT a.article_id AS article_id, a.author AS author, a.title AS title, " +
-                "a.source AS source, a.description AS description, a.date AS date, " +
-                "COUNT(l.likes_id) AS likes_count, " +
-                "COUNT(c.comment_id) AS comments_count " +
-                "FROM article a " +
-                "LEFT JOIN likes l ON a.article_id = l.article_id " +
-                "LEFT JOIN comment c ON a.article_id = c.article_id " +
-                "GROUP BY a.article_id " +
-                "ORDER BY a.date DESC",
-        resultSetMapping = "Mapping.ArticleDTO")
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "Article.findAllArticles_Named",
+                query = "SELECT a.article_id AS article_id, a.author AS author, a.title AS title, " +
+                        "a.source AS source, a.description AS description, a.date AS date, a.content AS content, " +
+                        "COUNT(l.likes_id) AS likes_count, " +
+                        "COUNT(c.comment_id) AS comments_count " +
+                        "FROM article a " +
+                        "LEFT JOIN likes l ON a.article_id = l.article_id " +
+                        "LEFT JOIN comment c ON a.article_id = c.article_id " +
+                        "GROUP BY a.article_id " +
+                        "ORDER BY a.date DESC",
+                resultSetMapping = "Mapping.ArticleDTO"),
+        @NamedNativeQuery(name = "Article.findArticle_Named",
+                query = "SELECT a.article_id AS article_id, a.author AS author, a.title AS title, " +
+                        "a.source AS source, a.description AS description, a.date AS date, a.content AS content, " +
+                        "COUNT(l.likes_id) AS likes_count, " +
+                        "COUNT(c.comment_id) AS comments_count " +
+                        "FROM article a " +
+                        "LEFT JOIN likes l ON a.article_id = l.article_id " +
+                        "LEFT JOIN comment c ON a.article_id = c.article_id " +
+                        "WHERE a.article_id = ? " +
+                        "GROUP BY a.article_id",
+                resultSetMapping = "Mapping.ArticleDTO")
+})
 
 @SqlResultSetMapping(name = "Mapping.ArticleDTO", classes = @ConstructorResult(targetClass = ArticleDTO.class,
                 columns = {@ColumnResult(name = "article_id", type = Long.class),
@@ -32,9 +45,9 @@ import java.util.List;
                         @ColumnResult(name = "source"),
                         @ColumnResult(name = "description"),
                         @ColumnResult(name = "date", type = LocalDate.class),
+                        @ColumnResult(name = "content"),
                         @ColumnResult(name = "likes_count", type = Integer.class),
                         @ColumnResult(name = "comments_count", type = Integer.class) }))
-
 
 @Getter @Setter
 @Entity
