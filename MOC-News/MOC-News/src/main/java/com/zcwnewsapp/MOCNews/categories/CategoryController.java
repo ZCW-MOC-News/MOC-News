@@ -39,4 +39,10 @@ public class CategoryController {
         //     This returns a JSON or XML with the users
         return categoryRepository.findById(id);
     }
+
+    @GetMapping(path="/find_category")
+    public @ResponseBody Iterable<Category> getCategory(@RequestParam String category) {
+        //     This returns a JSON or XML with the users
+        return categoryRepository.findByCategory(category);
+    }
 }
