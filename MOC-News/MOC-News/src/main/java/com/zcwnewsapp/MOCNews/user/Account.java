@@ -1,6 +1,7 @@
 package com.zcwnewsapp.MOCNews.user;
 
 import com.sun.istack.NotNull;
+import com.zcwnewsapp.MOCNews.comments.Comment;
 import com.zcwnewsapp.MOCNews.likes.Likes;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,13 @@ public class Account {
             orphanRemoval = true
     )
     private List<Likes> likes = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "account",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Comment> comments = new ArrayList<>();
 
     public Account() {}
 }
