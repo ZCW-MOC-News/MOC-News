@@ -35,6 +35,7 @@ public class LikesController {
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Likes> getAllLikes() {
+
         return likesRepository.findAll();
     }
 

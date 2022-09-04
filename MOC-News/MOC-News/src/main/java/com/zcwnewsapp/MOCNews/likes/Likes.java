@@ -27,7 +27,7 @@ public class Likes {
     @JsonIgnore
     private Account account;
 
-    public Likes () {
+    public Likes() {
     }
 
 }
