@@ -14,6 +14,7 @@ public class ArticleDTO {
     private String source;
     private String description;
     private LocalDate date;
+    private String content;
     private Integer likes_count;
     private Integer comments_count;
 
