@@ -22,14 +22,15 @@ public class CommentController {
 
     @Transactional
     @PostMapping(path="/add")
-    public @ResponseBody String addComment(@RequestParam Long account_id, @RequestParam Long article_id) {
-        Comment comment = new Comment();
+    public @ResponseBody String addComment(@RequestParam Long account_id, @RequestParam Long article_id, @RequestParam String comment) {
+        Comment com = new Comment();
         Account acc = entityManager.getReference(Account.class, account_id);
         Article art = entityManager.getReference(Article.class, article_id);
-        comment.setAccount(acc);
-        comment.setArticle(art);
-        entityManager.persist(comment);
-        commentRepository.save(comment);
+        com.setAccount(acc);
+        com.setArticle(art);
+        com.setComment(comment);
+        entityManager.persist(com);
+        commentRepository.save(com);
         return "Saved";
     }
 

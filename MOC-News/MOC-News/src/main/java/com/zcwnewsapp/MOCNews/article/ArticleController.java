@@ -1,6 +1,7 @@
 package com.zcwnewsapp.MOCNews.article;
 
 import com.zcwnewsapp.MOCNews.categories.Category;
+import com.zcwnewsapp.MOCNews.dto.ArticleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,8 +70,10 @@ public class ArticleController {
         return articleRepository.findByTitleIgnoreCaseContaining(title);
     }
 
-
-
+    @GetMapping(path="/all_ordered")
+    public @ResponseBody Iterable<ArticleDTO> getTest() {
+        return articleRepository.findAllArticles_Named();
+    }
 
 
 }
