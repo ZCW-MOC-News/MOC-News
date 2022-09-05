@@ -16,8 +16,8 @@ import java.util.List;
         @NamedNativeQuery(name = "Article.findAllArticles_Named",
                 query = "SELECT a.article_id AS article_id, a.author AS author, a.title AS title, " +
                         "a.source AS source, a.description AS description, a.date AS date, a.content AS content, " +
-                        "COUNT(l.likes_id) AS likes_count, " +
-                        "COUNT(c.comment_id) AS comments_count " +
+                        "COUNT(DISTINCT l.likes_id) AS likes_count, " +
+                        "COUNT(DISTINCT c.comment_id) AS comments_count " +
                         "FROM article a " +
                         "LEFT JOIN likes l ON a.article_id = l.article_id " +
                         "LEFT JOIN comment c ON a.article_id = c.article_id " +
@@ -27,8 +27,8 @@ import java.util.List;
         @NamedNativeQuery(name = "Article.findArticle_Named",
                 query = "SELECT a.article_id AS article_id, a.author AS author, a.title AS title, " +
                         "a.source AS source, a.description AS description, a.date AS date, a.content AS content, " +
-                        "COUNT(l.likes_id) AS likes_count, " +
-                        "COUNT(c.comment_id) AS comments_count " +
+                        "COUNT(DISTINCT l.likes_id) AS likes_count, " +
+                        "COUNT(DISTINCT c.comment_id) AS comments_count " +
                         "FROM article a " +
                         "LEFT JOIN likes l ON a.article_id = l.article_id " +
                         "LEFT JOIN comment c ON a.article_id = c.article_id " +
