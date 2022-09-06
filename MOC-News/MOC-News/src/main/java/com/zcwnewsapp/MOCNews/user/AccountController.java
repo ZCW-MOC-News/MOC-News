@@ -60,4 +60,26 @@ public class AccountController {
         Account empty = new Account();
         return empty;
     }
+
+    @Transactional
+    @PostMapping(path="/create")
+    public @ResponseBody Account create(@RequestParam(value="username") String username,
+                                       @RequestParam(value="password") String password) {
+
+        Optional<Account> acc = accountRepository.findByUsername(username);
+
+        // Make sure account does not exist already
+        if (acc.isEmpty()) {
+            Account n = new Account();
+            n.setUsername(username);
+            String encrypted = BCrypt.hashpw(password, BCrypt.gensalt());
+            n.setPassword(encrypted);
+            entityManager.persist(n);
+            accountRepository.save(n);
+            return n;
+        }
+
+        Account empty = new Account();
+        return empty;
+    }
 }
