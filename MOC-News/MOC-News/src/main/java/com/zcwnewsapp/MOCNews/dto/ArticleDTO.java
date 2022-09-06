@@ -17,5 +17,6 @@ public class ArticleDTO {
     private String content;
     private Integer likes_count;
     private Integer comments_count;
+    private String category;
 
 }
