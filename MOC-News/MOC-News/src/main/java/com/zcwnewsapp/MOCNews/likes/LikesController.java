@@ -22,7 +22,7 @@ public class LikesController {
 
     @Transactional
     @PostMapping(path="/add")
-    public @ResponseBody String addLikes(@RequestParam Long account_id, @RequestParam Long article_id) {
+    public @ResponseBody String addLikes(@RequestParam(value="account_id") Long account_id, @RequestParam(value="article_id") Long article_id) {
         Likes like = new Likes();
         Account acc = entityManager.getReference(Account.class, account_id);
         Article art = entityManager.getReference(Article.class, article_id);

@@ -5,7 +5,6 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Optional;
@@ -19,12 +18,9 @@ public class AccountController {
     EntityManager entityManager;
 
     @Transactional
-    @PostMapping(path="/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewUser (@RequestParam String username
-            , @RequestParam String password) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-
+    @PostMapping(path="/add")
+    public @ResponseBody String addNewUser (@RequestParam String username,
+                                            @RequestParam String password) {
         Account n = new Account();
         n.setUsername(username);
         String encrypted = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -42,12 +38,26 @@ public class AccountController {
 
     @GetMapping(path="/find_id")
     public @ResponseBody Optional<Account> getAccount(@RequestParam Long id) {
-
         return accountRepository.findById(id);
     }
 
     @GetMapping(path="/find")
     public @ResponseBody Optional<Account> getAccount(@RequestParam String username) {
         return accountRepository.findByUsername(username);
+    }
+
+    @PostMapping(path="/login")
+    public @ResponseBody Account login(@RequestParam(value="username") String username,
+                                               @RequestParam(value="password") String password) {
+        Optional<Account> acc = accountRepository.findByUsername(username);
+
+        if (!acc.isEmpty()) {
+            Account account = acc.get();
+            if (BCrypt.checkpw(password, account.getPassword())) {
+                return account;
+            }
+        }
+        Account empty = new Account();
+        return empty;
     }
 }
