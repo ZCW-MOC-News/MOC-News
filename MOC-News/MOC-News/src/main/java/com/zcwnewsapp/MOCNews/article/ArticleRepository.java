@@ -16,4 +16,7 @@ public interface ArticleRepository extends CrudRepository<Article, Long> {
 
     @Query(nativeQuery = true)
     ArticleDTO findArticle_Named(Long id);
+
+    @Query(nativeQuery = true)
+    List<ArticleDTO> findLikedArticles_Named(Long account_id);
 }

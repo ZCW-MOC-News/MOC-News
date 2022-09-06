@@ -17,8 +17,10 @@ import java.util.List;
                 query = "SELECT a.article_id AS article_id, a.author AS author, a.title AS title, " +
                         "a.source AS source, a.description AS description, a.date AS date, a.content AS content, " +
                         "COUNT(DISTINCT l.likes_id) AS likes_count, " +
-                        "COUNT(DISTINCT c.comment_id) AS comments_count " +
+                        "COUNT(DISTINCT c.comment_id) AS comments_count, " +
+                        "cat.category AS category " +
                         "FROM article a " +
+                        "JOIN category cat ON a.category_id = cat.category_id " +
                         "LEFT JOIN likes l ON a.article_id = l.article_id " +
                         "LEFT JOIN comment c ON a.article_id = c.article_id " +
                         "GROUP BY a.article_id " +
@@ -28,11 +30,26 @@ import java.util.List;
                 query = "SELECT a.article_id AS article_id, a.author AS author, a.title AS title, " +
                         "a.source AS source, a.description AS description, a.date AS date, a.content AS content, " +
                         "COUNT(DISTINCT l.likes_id) AS likes_count, " +
-                        "COUNT(DISTINCT c.comment_id) AS comments_count " +
+                        "COUNT(DISTINCT c.comment_id) AS comments_count, " +
+                        "cat.category AS category " +
                         "FROM article a " +
+                        "JOIN category cat ON a.category_id = cat.category_id " +
                         "LEFT JOIN likes l ON a.article_id = l.article_id " +
                         "LEFT JOIN comment c ON a.article_id = c.article_id " +
                         "WHERE a.article_id = ? " +
+                        "GROUP BY a.article_id",
+                resultSetMapping = "Mapping.ArticleDTO"),
+        @NamedNativeQuery(name = "Article.findLikedArticles_Named",
+                query = "SELECT a.article_id AS article_id, a.author AS author, a.title AS title, " +
+                        "a.source AS source, a.description AS description, a.date AS date, a.content AS content, " +
+                        "COUNT(DISTINCT l.likes_id) AS likes_count, " +
+                        "COUNT(DISTINCT c.comment_id) AS comments_count, " +
+                        "cat.category AS category " +
+                        "FROM article a " +
+                        "JOIN category cat ON a.category_id = cat.category_id " +
+                        "JOIN likes l ON a.article_id = l.article_id " +
+                        "LEFT JOIN comment c ON a.article_id = c.article_id " +
+                        "WHERE l.account_id = ? " +
                         "GROUP BY a.article_id",
                 resultSetMapping = "Mapping.ArticleDTO")
 })
@@ -46,7 +63,8 @@ import java.util.List;
                         @ColumnResult(name = "date", type = LocalDate.class),
                         @ColumnResult(name = "content"),
                         @ColumnResult(name = "likes_count", type = Integer.class),
-                        @ColumnResult(name = "comments_count", type = Integer.class) }))
+                        @ColumnResult(name = "comments_count", type = Integer.class),
+                        @ColumnResult(name = "category")}))
 
 @Getter @Setter
 @Entity

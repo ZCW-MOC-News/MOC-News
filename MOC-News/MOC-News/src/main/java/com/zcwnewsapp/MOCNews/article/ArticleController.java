@@ -71,9 +71,13 @@ public class ArticleController {
     }
 
     @GetMapping(path="/all_ordered")
-    public @ResponseBody Iterable<ArticleDTO> getTest() {
+    public @ResponseBody Iterable<ArticleDTO> getAllOrdered() {
         return articleRepository.findAllArticles_Named();
     }
 
+    @GetMapping(path="/liked")
+    public @ResponseBody Iterable<ArticleDTO> getAllLiked(@RequestParam Long account_id) {
+        return articleRepository.findLikedArticles_Named(account_id);
+    }
 
 }
