@@ -50,7 +50,7 @@ import java.util.List;
                         "LEFT JOIN likes l ON a.article_id = l.article_id " +
                         "LEFT JOIN comment c ON a.article_id = c.article_id " +
                         "WHERE a.article_id IN " +
-                        "(SELECT a.article_id FROM article a JOIN likes l ON a.article_id = l.article_id JOIN account acc ON l.account_id = acc.account_id) " +
+                        "(SELECT a.article_id FROM article a JOIN likes l ON a.article_id = l.article_id JOIN account acc ON l.account_id = acc.account_id WHERE acc.account_id = ?) " +
                         "GROUP BY a.article_id",
                 resultSetMapping = "Mapping.ArticleDTO")
 })
