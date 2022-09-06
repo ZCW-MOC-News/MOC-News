@@ -47,9 +47,10 @@ import java.util.List;
                         "cat.category AS category " +
                         "FROM article a " +
                         "JOIN category cat ON a.category_id = cat.category_id " +
-                        "JOIN likes l ON a.article_id = l.article_id " +
+                        "LEFT JOIN likes l ON a.article_id = l.article_id " +
                         "LEFT JOIN comment c ON a.article_id = c.article_id " +
-                        "WHERE l.account_id = ? " +
+                        "WHERE a.article_id IN " +
+                        "(SELECT a.article_id FROM article a JOIN likes l ON a.article_id = l.article_id JOIN account acc ON l.account_id = acc.account_id) " +
                         "GROUP BY a.article_id",
                 resultSetMapping = "Mapping.ArticleDTO")
 })
