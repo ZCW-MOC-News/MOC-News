@@ -52,6 +52,20 @@ import java.util.List;
                         "WHERE a.article_id IN " +
                         "(SELECT a.article_id FROM article a JOIN likes l ON a.article_id = l.article_id JOIN account acc ON l.account_id = acc.account_id WHERE acc.account_id = ?) " +
                         "GROUP BY a.article_id",
+                resultSetMapping = "Mapping.ArticleDTO"),
+        @NamedNativeQuery(name = "Article.findArticlesByCategory_Named",
+                query = "SELECT a.article_id AS article_id, a.author AS author, a.title AS title, " +
+                        "a.source AS source, a.description AS description, a.date AS date, a.content AS content, " +
+                        "COUNT(DISTINCT l.likes_id) AS likes_count, " +
+                        "COUNT(DISTINCT c.comment_id) AS comments_count, " +
+                        "cat.category AS category " +
+                        "FROM article a " +
+                        "JOIN category cat ON a.category_id = cat.category_id " +
+                        "LEFT JOIN likes l ON a.article_id = l.article_id " +
+                        "LEFT JOIN comment c ON a.article_id = c.article_id " +
+                        "WHERE a.category_id = ? " +
+                        "GROUP BY a.article_id " +
+                        "ORDER BY a.date DESC",
                 resultSetMapping = "Mapping.ArticleDTO")
 })
 

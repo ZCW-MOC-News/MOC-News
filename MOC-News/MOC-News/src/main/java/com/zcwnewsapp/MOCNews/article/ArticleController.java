@@ -80,4 +80,15 @@ public class ArticleController {
         return articleRepository.findLikedArticles_Named(account_id);
     }
 
+    @GetMapping(path="/get_by_category")
+    public @ResponseBody Iterable<ArticleDTO>  getArticleByCategory(@RequestParam Long category_id) {
+        return articleRepository.findArticlesByCategory_Named(category_id);
+    }
+
+    @DeleteMapping(path="/delete_by_id")
+    public @ResponseBody void deleteArticle(@RequestParam Long article_id) {
+         articleRepository.deleteById(article_id);
+    }
+
+
 }
