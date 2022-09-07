@@ -24,12 +24,13 @@ public class ArticleController {
 
     @Transactional
     @PostMapping(path="/post")
-    public @ResponseBody String postArticle (@RequestParam String author
-            , @RequestParam String title, @RequestParam String source,
-                                             @RequestParam String description,
-                                             @RequestParam String content,
-                                             @RequestParam String date,
-                                             @RequestParam String category) {
+    public @ResponseBody String postArticle(@RequestParam String author,
+                                            @RequestParam String title,
+                                            @RequestParam String source,
+                                            @RequestParam String description,
+                                            @RequestParam String content,
+                                            @RequestParam String date,
+                                            @RequestParam String category) {
 
         // Formats a String into a Java date object
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -46,6 +47,34 @@ public class ArticleController {
         articleRepository.save(a);
         entityManager.persist(a);
 
+        return "Saved";
+    }
+
+    @Transactional
+    @PostMapping(path="/post_story")
+    public @ResponseBody String postArticleForm(@RequestParam(value="author") String author,
+                                                @RequestParam(value="title") String title,
+                                                @RequestParam(value="source") String source,
+                                                @RequestParam(value="description") String description,
+                                                @RequestParam(value="content") String content,
+                                                @RequestParam(value="date") String date,
+                                                @RequestParam(value="category") String category) {
+
+        // Formats a String into a Java date object
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate datetime = LocalDate.parse(date, formatter);
+        Article a = new Article();
+        a.setAuthor(author);
+        a.setDate(datetime);
+        a.setTitle(title);
+        a.setSource(source);
+        a.setDescription(description);
+        content = content.replaceAll("(\r\n|\n)", "<br />");
+        a.setContent(content);
+        Category c = entityManager.getReference(Category.class, Long.parseLong(category));
+        a.setCategory(c);
+        articleRepository.save(a);
+        entityManager.persist(a);
         return "Saved";
     }
 
