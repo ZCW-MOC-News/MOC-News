@@ -85,6 +85,11 @@ public class ArticleController {
         return articleRepository.findArticlesByCategory_Named(category_id);
     }
 
+    @DeleteMapping(path="/delete_by_id")
+    public @ResponseBody void deleteArticle(@RequestParam Long article_id) {
+        //     This returns a JSON or XML with the users
+         articleRepository.deleteById(article_id);
+    }
 
 
 }
