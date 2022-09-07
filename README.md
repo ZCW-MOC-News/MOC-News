@@ -28,5 +28,5 @@
 ## 🎨 Frontend Tech Stack
 
 - [**JavaScript**](https://www.javascript.com/) - Language
-- [**Next.js**](https://nextjs.org/) - Framework
+- [**React**](https://reactjs.org/) and [**Next.js**](https://nextjs.org/) - Framework
 - [**TailwindCSS**](https://tailwindcss.com/) - Styling
